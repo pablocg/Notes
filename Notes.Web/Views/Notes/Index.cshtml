@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Notes.Models.NoteViewModel>
+
+@{
+    ViewBag.Title = "Notes App";
+}
+
+<h2>Notes</h2>
+
+<table>
+    @foreach (var note in Model)
+    {
+        <tr>
+            <td>@note.Text</td>
+        </tr>
+    }
+</table>
