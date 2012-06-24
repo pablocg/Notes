@@ -1,4 +1,4 @@
-﻿namespace Notes.Models
+﻿namespace Notes.Web.Models
 {
     public class NoteViewModel
     {

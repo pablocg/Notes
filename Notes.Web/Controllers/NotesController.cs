@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Notes.Models;
+using Notes.Web.Models;
 
-namespace Notes.Controllers
+namespace Notes.Web.Controllers
 {
     public class NotesController : Controller
     {
