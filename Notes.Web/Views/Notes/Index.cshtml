@@ -12,6 +12,12 @@
     {
         <tr>
             <td>@note.Text</td>
+            <td><a href="@Url.Action("Edit", new { id = note.Id })">Edit</a></td>
+            <td><a href="@Url.Action("Delete", new { id = note.Id })">Delete</a></td>
         </tr>
     }
 </table>
+
+<p>
+    <a href="@Url.Action("New")">Add New Note</a>
+</p>

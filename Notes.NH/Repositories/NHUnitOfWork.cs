@@ -11,11 +11,9 @@ namespace Notes.NH.Repositories
         private ITransaction _transaction;
         private ISession _session;
 
-        public NHUnitOfWork()
+        public NHUnitOfWork(ISessionFactory sessionFactory)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["NotesDB"].ConnectionString;
-            var helper = new NHibernateHelper(connectionString);
-            _sessionFactory = helper.SessionFactory;
+            _sessionFactory = sessionFactory;
         }
 
         public ISession Session
@@ -38,6 +36,8 @@ namespace Notes.NH.Repositories
 
         public void Commit()
         {
+            if (_session == null) return;
+
             if (!_transaction.IsActive)
             {
                 throw new InvalidOperationException("No active transation");
@@ -47,6 +47,8 @@ namespace Notes.NH.Repositories
 
         public void Rollback()
         {
+            if (_session == null) return;
+
             if (_transaction.IsActive)
             {
                 _transaction.Rollback();    

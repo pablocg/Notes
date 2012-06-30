@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
+using Notes.Web.Filters;
 
 namespace Notes.Web
 {
@@ -11,6 +12,7 @@ namespace Notes.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new UnitOfWorkFilter());
         }
 
         public static void RegisterRoutes(RouteCollection routes)

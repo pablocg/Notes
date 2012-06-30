@@ -1,0 +1,15 @@
+﻿@using Notes.Web.Models
+@model NoteViewModel
+
+@{
+    ViewBag.Title = "Notes";
+}
+
+<h2>New Note</h2>
+
+@using(Html.BeginForm("Create", "Notes"))
+{
+    @Html.Partial("_Form");
+
+    <input id="submit" value="Create" type="submit" />   
+}

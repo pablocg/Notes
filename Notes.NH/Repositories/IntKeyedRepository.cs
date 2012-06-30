@@ -9,15 +9,19 @@ namespace Notes.NH.Repositories
     {
         private readonly ISession _session;
 
-        protected IntKeyedRepository()
+        public IntKeyedRepository(ISession session)
         {
-            var unitOfWork = new NHUnitOfWork();
-            _session = unitOfWork.Session;
+            _session = session;
         }
 
         public T Get(int id)
         {
             return _session.Get<T>(id);
+        }
+
+        public T Load(int id)
+        {
+            return _session.Load<T>(id);
         }
 
         public IQueryable<T> GetAll()
@@ -38,6 +42,11 @@ namespace Notes.NH.Repositories
         public void Remove(T item)
         {
             _session.Delete(item);
+        }
+
+        public void Remove(int id)
+        {
+            _session.Delete(Load(id));
         }
     }
 }

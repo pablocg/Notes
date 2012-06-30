@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Notes.NH.Repositories;
 
 namespace Notes.Web.Filters
@@ -15,16 +11,23 @@ namespace Notes.Web.Filters
         {
             //usar algun provider para obtener el unit of work actual, y no crearlo para cada action,
             //ya que crea un sessionfactory y es costoso.
+
+            _unitOfWork = UnitOfWorkProvider.GetCurrent();
         }
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            throw new NotImplementedException();
+            if (filterContext.Exception == null)
+            {
+                _unitOfWork.Commit();
+                _unitOfWork.Dispose();
+            }
         }
 
         public void OnException(ExceptionContext filterContext)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Rollback();
+            _unitOfWork.Dispose();
         }
     }
 }

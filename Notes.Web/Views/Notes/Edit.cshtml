@@ -1,0 +1,16 @@
+﻿@model Notes.Web.Models.NoteViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>Edit Note</h2>
+
+@using(Html.BeginForm("Update", "Notes"))
+{
+    @Html.HiddenFor(x => x.Id);
+    
+    @Html.Partial("_Form");
+    
+    <input id="submit" value="Update" type="submit" />   
+}
